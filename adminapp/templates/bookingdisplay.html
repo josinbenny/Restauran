@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Booking Details</h5>
+                        <span class="d-block m-t-5">use class <code>table-striped</code> inside table element</span>
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>No. of chairs</th>
+                                        <th>Date</th>
+                                        <th>Special Request</th>
+                                        <th>Username</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for b in book %}
+                                    <tr>
+                                        <td>{{b.Name}}</td>
+                                        <td>{{b.Email}}</td>
+                                        <td>{{b.Chair}}</td>
+                                        <td>{{b.Date}}</td>
+                                        <td>{{b.Request}}</td>
+                                        <td>{{b.User}}</td>
+                                        <td>
+                                            <form action="{% url 'deletebooking' dataid=b.id %}">
+                                                <button type="submit" class="btn btn-outline-danger has-ripple">Delete<span class="ripple ripple-animate" style="height: 87.425px; width: 87.425px; animation-duration: 0.7s; animation-timing-function: linear; background: rgb(255, 255, 255); opacity: 0.4; top: -32.1125px; left: 20.0875px;"></span></button>
+                                        </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</body>
+</html>
+{% endblock %}

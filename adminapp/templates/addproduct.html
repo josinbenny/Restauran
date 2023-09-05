@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+                    <div class="card-body">
+                        <h5></h5>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form method="post"action="{% url 'saveproduct' %}" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <select class="form-control" id="exampleFormControlSelect1" name="category ">
+                                        <option>Choose Category</option>
+                                        {% for c in category %}
+                                            <option>{{c.Category_Name}}</option>
+                                        {% endfor %}                                        }
+                                        </select>
+                                    <div class="form-group fill">
+                                        <label>Description</label>
+                                        <input type="text" class="form-control" placeholder="Name of Dish" name="name">
+                                    </div>
+                                    <div class="form-group fill">
+                                        <label>Description</label>
+                                        <input type="text" class="form-control" placeholder="Description" name="description">
+                                    </div>
+                                    <div class="form-group fill">
+                                        <label>Price</label>
+                                        <input type="text" class="form-control" placeholder="Price" name="price">
+                                    </div>
+                                    <div class="form-group fill">
+                                        <label>Upload image</label>
+                                        <input type="file" class="form-control" placeholder="Choose Image" name="image">
+                                    </div>
+
+                                    <button type="submit" class="btn  btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+</body>
+</html>
+{% endblock %}

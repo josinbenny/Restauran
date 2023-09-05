@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+
+                                        <th>Category</th>
+                                        <th>Description</th>
+                                        <th>Image</th>
+                                        <th>Options</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for d in data %}
+                                    <tr>
+                                        <td>{{d.Category_Name}}</td>
+                                        <td>{{d.Description}}</td>
+                                        <td><img src="{{d.Image.url}}" width="100px" height="70px"></td>
+                                        <td>
+                                            <form method="post" action="{% url 'editcategory' dataid=d.id %}">
+                                                {% csrf_token %}
+                                        <button type="submit" class="btn btn-outline-dark has-ripple">Edit
+                                            <span class="ripple ripple-animate" style="height: 70.6625px; width: 70.6625px; animation-duration: 0.7s; animation-timing-function: linear; background: rgb(255, 255, 255); opacity: 0.4; top: -0.731259px; left: 0.10625px;">
+                                            </span>
+                                        </button>
+                                                </form>
+                                            <form method="post" action="{% url 'deletecategory' dataid=d.id %}">
+                                                {% csrf_token %}
+                                            <button type="submit" class="btn btn-outline-dark has-ripple">Delete
+                                            <span class="ripple ripple-animate">
+                                            </span>
+                                        </button>
+                                                </form>
+                                        </td>
+
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div></body>
+</html>
+{% endblock %}
